@@ -1,0 +1,132 @@
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+<title>Zymono mySchool</title>
+
+<div class="container">
+  <form id="signup-form">
+    <img height="180px" src="//cdn.zymono.com/oneid/dark1.png">
+    <input type="email" id="email-input" placeholder="Email" required>
+    <input type="password" id="password-input" placeholder="Password" required>
+    <button type="submit">Login</button>
+    <p onclick="window.location = '/signup/'">Or signup?</p>
+  </form>
+</div>
+
+
+<script>
+  // Replace with your own Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyDjG-bI38x6r_gUZdC27BLpC-iwebI4Gmo",
+    authDomain: "zymono-oneid.firebaseapp.com",
+    projectId: "zymono-oneid",
+    storageBucket: "zymono-oneid.appspot.com",
+    messagingSenderId: "10175385420",
+    appId: "1:10175385420:web:8a04ac66e17ded69ef89e9"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+ 
+
+
+
+  var signupForm = document.getElementById('signup-form');
+
+signupForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  var email = document.getElementById('email-input').value;
+  var password = document.getElementById('password-input').value;
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(function(userCredential) {
+      // Signup successful
+      var user = userCredential.user;
+      const email = user.email;
+    const emailVerified = user.emailVerified;
+    const uid = user.uid;
+
+    window.localStorage.setItem("email", email)
+    window.localStorage.setItem("emailVerified", emailVerified)
+    window.localStorage.setItem("buid", uid)
+
+      
+    if (new URLSearchParams(location.search).get('ap')) {
+      window.location = '/auth/?ap=' + user.uid
+    } else {
+      window.location = './1/?u=' + user.uid
+    }
+
+    })
+    .catch(function(error) {
+      // Signup failed
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(errorMessage);
+    });
+});
+
+</script>
+<style>
+  p {
+    color: white;
+    cursor: pointer;
+  }
+  
+  body {
+  background-color: #1f1f1f; /* Dark background color */
+  color: #fff; /* Text color */
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+form {
+  width: 600px;
+  padding: 20px;
+  background-color: #333; /* Dark form background color */
+  border-radius: 10px;
+  text-align: center;
+}
+
+input[type="email"],
+input[type="password"],
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #4d6aff; /* Light purple accent color */
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4258c2; /* Darker purple on hover */
+}
+
+  @media only screen and (max-width: 767px) {
+  /* Add your mobile styles here */
+    form {
+      height: 50vh;
+  width: 80vh;
+  padding: 20px;
+  background-color: #333; /* Dark form background color */
+  border-radius: 10px;
+  text-align: center;
+}
+}
+</style>

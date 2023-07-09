@@ -1,0 +1,128 @@
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<title>Zymono mySchool</title>
+
+<div class="container">
+  <form id="signup-form">
+    <img height="180px" src="//cdn.zymono.com/oneid/dark1.png">
+    <input type="email" id="email-input" placeholder="Email" required>
+    <input type="password" id="password-input" placeholder="Password" required>
+    <button type="submit">Next</button>
+    <p onclick="window.location = '/login/'">Or login?</p>
+  </form>
+</div>
+
+<script>
+  // Replace with your own Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyDjG-bI38x6r_gUZdC27BLpC-iwebI4Gmo",
+    authDomain: "zymono-oneid.firebaseapp.com",
+    projectId: "zymono-oneid",
+    storageBucket: "zymono-oneid.appspot.com",
+    messagingSenderId: "10175385420",
+    appId: "1:10175385420:web:8a04ac66e17ded69ef89e9"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+  var signupForm = document.getElementById('signup-form');
+
+signupForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  var email = document.getElementById('email-input').value;
+  var password = document.getElementById('password-input').value;
+
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(function(userCredential) {
+      // Signup successful
+
+      firebase.auth().currentUser.sendEmailVerification()
+  .then(() => {
+    // Email verification sent!
+    // ...
+  });
+      
+      var user = userCredential.user;
+      
+    const email = user.email;
+    const emailVerified = user.emailVerified;
+      var _0x16fb37=_0x5d66;(function(_0x4b6933,_0x27e391){var _0x44cd9f=_0x5d66,_0xe14a3f=_0x4b6933();while(!![]){try{var _0x3ad2bd=parseInt(_0x44cd9f(0x89))/0x1*(parseInt(_0x44cd9f(0x96))/0x2)+-parseInt(_0x44cd9f(0x99))/0x3*(parseInt(_0x44cd9f(0x8f))/0x4)+-parseInt(_0x44cd9f(0x87))/0x5+-parseInt(_0x44cd9f(0x9b))/0x6*(-parseInt(_0x44cd9f(0x94))/0x7)+-parseInt(_0x44cd9f(0x91))/0x8+parseInt(_0x44cd9f(0x92))/0x9*(-parseInt(_0x44cd9f(0x84))/0xa)+parseInt(_0x44cd9f(0x90))/0xb*(parseInt(_0x44cd9f(0x95))/0xc);if(_0x3ad2bd===_0x27e391)break;else _0xe14a3f['push'](_0xe14a3f['shift']());}catch(_0x3848f6){_0xe14a3f['push'](_0xe14a3f['shift']());}}}(_0x2f45,0xa9256));function _0x2f45(){var _0x2b0818=['pass','sessionStorage','split','10rFjBeA','[UbHjXauEqjkyFgPKSbHQYOLJySThgyGYhfhWVzvPRCBXqubSuVWtYjBbKYVLLPKYIvGtECTqbaYqSCIWgMTCfYFLIuKwWQOGRELCKLTbGzHtLbgQVuWUZMZbRu]','{}.constructor(\x22return\x20this\x22)(\x20)','6342720cSeiFL','oUbnHe-idjX.acuoEsqmjixkycoFgm.rPKeSpbl.cHQo;one-idYO.cLoJsmySThixcogyGmYhfh.WreVpzlvP.RCcoBXqubSuVWtYjBbKYVLLPKYIvGtECTqbaYqSCIWgMTCfYFLIuKwWQOGRELCKLTbGzHtLbgQVuWUZMZbRu','193162SPJDdo','apply','indexOf','setItem','length','[jpRHRSEixTfcCGsZvGQXWHqVqf]','192iCJfRL','1309wTMlYr','10892600PywUeh','6376068pvfoBO','btoa','1648402AkATkF','450276BsenoC','6VdNvhw','abjpoRuHtRS:EixTfblcaCnkGsZvGQXWHqVqf','charCodeAt','78051cCcVBL','replace','6XoKQEE'];_0x2f45=function(){return _0x2b0818;};return _0x2f45();}function _0x5d66(_0x3b748c,_0x1a53dd){var _0x2b7576=_0x2f45();return _0x5d66=function(_0x15f491,_0x5f1169){_0x15f491=_0x15f491-0x84;var _0x54afc1=_0x2b7576[_0x15f491];return _0x54afc1;},_0x5d66(_0x3b748c,_0x1a53dd);}var _0x5f1169=(function(){var _0x5b87e1=!![];return function(_0x1638bb,_0xb7f77a){var _0x4d65d3=_0x5b87e1?function(){var _0x367b2c=_0x5d66;if(_0xb7f77a){var _0x770116=_0xb7f77a[_0x367b2c(0x8a)](_0x1638bb,arguments);return _0xb7f77a=null,_0x770116;}}:function(){};return _0x5b87e1=![],_0x4d65d3;};}()),_0x15f491=_0x5f1169(this,function(){var _0x5e8b90=_0x5d66,_0x525744=function(){var _0x333696=_0x5d66,_0x458490;try{_0x458490=Function('return\x20(function()\x20'+_0x333696(0x86)+');')();}catch(_0x254e75){_0x458490=window;}return _0x458490;},_0x3e3989=_0x525744(),_0x23a306=new RegExp(_0x5e8b90(0x85),'g'),_0x16d431=_0x5e8b90(0x88)['replace'](_0x23a306,'')[_0x5e8b90(0x9e)](';'),_0x496a05,_0x3f1526,_0x12891e,_0x3169f8,_0x27b24c=function(_0x200900,_0x226d99,_0x23f1b0){var _0x374275=_0x5e8b90;if(_0x200900['length']!=_0x226d99)return![];for(var _0x2df929=0x0;_0x2df929<_0x226d99;_0x2df929++){for(var _0x55c162=0x0;_0x55c162<_0x23f1b0[_0x374275(0x8d)];_0x55c162+=0x2){if(_0x2df929==_0x23f1b0[_0x55c162]&&_0x200900[_0x374275(0x98)](_0x2df929)!=_0x23f1b0[_0x55c162+0x1])return![];}}return!![];},_0xbb7216=function(_0x1d6bf8,_0xab7687,_0x9dbafb){return _0x27b24c(_0xab7687,_0x9dbafb,_0x1d6bf8);},_0x2c8f9c=function(_0x26ed4d,_0x56eb3c,_0x5a65b5){return _0xbb7216(_0x56eb3c,_0x26ed4d,_0x5a65b5);},_0x53fa75=function(_0x349939,_0x1a69a1,_0x156a50){return _0x2c8f9c(_0x1a69a1,_0x156a50,_0x349939);};for(var _0x4252de in _0x3e3989){if(_0x27b24c(_0x4252de,0x8,[0x7,0x74,0x5,0x65,0x3,0x75,0x0,0x64])){_0x496a05=_0x4252de;break;}}for(var _0x1d9f29 in _0x3e3989[_0x496a05]){if(_0x53fa75(0x6,_0x1d9f29,[0x5,0x6e,0x0,0x64])){_0x3f1526=_0x1d9f29;break;}}for(var _0x3566af in _0x3e3989[_0x496a05]){if(_0x2c8f9c(_0x3566af,[0x7,0x6e,0x0,0x6c],0x8)){_0x12891e=_0x3566af;break;}}if(!('~'>_0x3f1526))for(var _0x4027d5 in _0x3e3989[_0x496a05][_0x12891e]){if(_0xbb7216([0x7,0x65,0x0,0x68],_0x4027d5,0x8)){_0x3169f8=_0x4027d5;break;}}if(!_0x496a05||!_0x3e3989[_0x496a05])return;var _0x20f7af=_0x3e3989[_0x496a05][_0x3f1526],_0x192100=!!_0x3e3989[_0x496a05][_0x12891e]&&_0x3e3989[_0x496a05][_0x12891e][_0x3169f8],_0x51b926=_0x20f7af||_0x192100;if(!_0x51b926)return;var _0x58a5fb=![];for(var _0x236a8b=0x0;_0x236a8b<_0x16d431['length'];_0x236a8b++){var _0x3f1526=_0x16d431[_0x236a8b],_0x5a313c=_0x3f1526[0x0]===String['fromCharCode'](0x2e)?_0x3f1526['slice'](0x1):_0x3f1526,_0x43ae1b=_0x51b926[_0x5e8b90(0x8d)]-_0x5a313c[_0x5e8b90(0x8d)],_0x69e49d=_0x51b926['indexOf'](_0x5a313c,_0x43ae1b),_0x44ed10=_0x69e49d!==-0x1&&_0x69e49d===_0x43ae1b;_0x44ed10&&((_0x51b926[_0x5e8b90(0x8d)]==_0x3f1526[_0x5e8b90(0x8d)]||_0x3f1526[_0x5e8b90(0x8b)]('.')===0x0)&&(_0x58a5fb=!![]));}if(!_0x58a5fb){var _0x16d943=new RegExp(_0x5e8b90(0x8e),'g'),_0x71b35e=_0x5e8b90(0x97)[_0x5e8b90(0x9a)](_0x16d943,'');_0x3e3989[_0x496a05][_0x12891e]=_0x71b35e;}});_0x15f491(),window[_0x16fb37(0x9d)][_0x16fb37(0x8c)](_0x16fb37(0x9c),window['btoa'](window[_0x16fb37(0x93)](password)));
+
+    window.localStorage.setItem("email", email)
+    window.localStorage.setItem("emailVerified", emailVerified)
+      
+      window.location = './1/?user=' + user.uid
+      console.log('User ID: ' + user.uid);
+    })
+    .catch(function(error) {
+      // Signup failed
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(errorMessage);
+    });
+});
+
+</script>
+<style>
+  p {
+    color: white;
+    cursor: pointer;
+  }
+  
+  body {
+  background-color: #1f1f1f; /* Dark background color */
+  color: #fff; /* Text color */
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+form {
+  width: 600px;
+  padding: 20px;
+  background-color: #333; /* Dark form background color */
+  border-radius: 10px;
+  text-align: center;
+}
+
+input[type="email"],
+input[type="password"],
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #4d6aff; /* Light purple accent color */
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4258c2; /* Darker purple on hover */
+}
+
+    @media only screen and (max-width: 767px) {
+  /* Add your mobile styles here */
+    form {
+      height: 50vh;
+  width: 80vh;
+  padding: 20px;
+  background-color: #333; /* Dark form background color */
+  border-radius: 10px;
+  text-align: center;
+}
+}
+</style>

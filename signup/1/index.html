@@ -1,0 +1,149 @@
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+<title>Zymono mySchool</title>
+
+<div class="container">
+  <form id="signup-form" style="text-align: center;">
+    <img height="180px" src="//cdn.zymono.com/oneid/dark1.png">
+    <input type="number" id="age" placeholder="Your Age" required>
+    <select id="gender" name="dropdown" placeholder="Your Gender">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="nonbinary">Non-Binary</option>
+      <option value="no">I'd Prefer Not to Say</option>
+    </select>
+    <button type="submit">Create my Account</button>
+    <p>You Must be 13 To Create an Account</p>
+  </form>
+</div>
+<script>
+  function generateRandomString(length) {
+  let result = '';
+  const characters = '0123456789';
+  const charactersLength = characters.length;
+
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  return result;
+}
+  
+  // Replace with your own Firebase configuration
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDjG-bI38x6r_gUZdC27BLpC-iwebI4Gmo",
+      authDomain: "zymono-oneid.firebaseapp.com",
+      projectId: "zymono-oneid",
+      storageBucket: "zymono-oneid.appspot.com",
+      messagingSenderId: "10175385420",
+      appId: "1:10175385420:web:8a04ac66e17ded69ef89e9"
+    };
+
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+  function saveCloud(where, what) {
+  var sr = where
+
+  const storage = firebase.storage();
+  const storageRef = firebase.storage().ref(sr);
+
+  storageRef.putString(what).then((snapshot) => {
+    console.log(where);
+  })
+}
+
+  document.getElementById('age').addEventListener('change', function(event) {
+    if (document.getElementById('age').value <= 12) {
+      //MINOR
+      document.querySelector('button').style.visibility = 'hidden'
+      document.querySelector('p').style.visibility = 'visible'
+    } else if (document.getElementById('age').value >= 13 && document.getElementById('age').value <= 17) {
+      //18 - 13
+      document.querySelector('button').style.visibility = 'visible'
+      document.querySelector('p').style.visibility = 'hidden'
+    } else {
+      document.querySelector('button').style.visibility = 'visible'
+      document.querySelector('p').style.visibility = 'hidden'
+    }
+  })
+var signupForm = document.getElementById('signup-form');
+  
+  signupForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+    saveCloud(`id/${new URLSearchParams(location.search).get('user')}/uid`, generateRandomString(16))
+saveCloud(`id/${new URLSearchParams(location.search).get('user')}/gender`, document.getElementById('gender').value)
+    saveCloud(`id/${new URLSearchParams(location.search).get('user')}/age`, document.getElementById('age').value)
+
+    setTimeout(function() {
+      window.location = '/account'
+    }, 60)
+});
+
+</script>
+<style>
+  body {
+  background-color: #1f1f1f; /* Dark background color */
+  color: #fff; /* Text color */
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+form {
+  width: 600px;
+  padding: 20px;
+  background-color: #333; /* Dark form background color */
+  border-radius: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #4d6aff; /* Light purple accent color */
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4258c2; /* Darker purple on hover */
+}
+
+    @media only screen and (max-width: 767px) {
+  /* Add your mobile styles here */
+    form {
+      height: 50vh;
+  width: 80vh;
+  padding: 20px;
+  background-color: #333; /* Dark form background color */
+  border-radius: 10px;
+  text-align: center;
+}
+}
+
+    p {
+    color: white;
+    cursor: pointer;
+      visibility: hidden;
+  }
+</style>
