@@ -56,7 +56,7 @@ signupForm.addEventListener('submit', function(event) {
     if (new URLSearchParams(location.search).get('ap')) {
       window.location = '/auth/?ap=' + user.uid
     } else {
-      window.location = './1/?u=' + user.uid
+      window.location = '/account/?uid=' + user.uid
     }
 
     })
