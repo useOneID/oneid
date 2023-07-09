@@ -1,29 +1,13 @@
+<script src="https://one-id.cosmixcom.repl.co/static/build.js"></script>
 <script>
-  // Open a popup window
-function openPopup() {
-  // Specify the URL of the page you want to open in the popup
-  var url = "https://one-id.cosmixcom.repl.co/auth/?info=all";
-
-  // Specify the desired dimensions of the popup window
-  var width = 1000;
-  var height = 600;
-
-  // Specify additional window features as a comma-separated string
-  var features = "width=" + width + ",height=" + height + ",resizable=yes";
-
-  // Open the popup window
-  window.open(url, "_blank", features);
-
-  // Listen for messages from the popup
-window.addEventListener('message', function(event) {
-  // Verify the origin to ensure it's from the expected popup domain
-  if (event.origin === 'https://one-id.cosmixcom.repl.co') {
-    // Extract the data sent from the popup
-    var data = event.data;
-    console.log(data)
-  }
-});
-
-}
-openPopup()
+  build({info: true})
+  
+      window.addEventListener('message', function(event) {
+      // Verify the origin to ensure it's from the expected popup domain
+      if (event.origin === 'https://oneid.zymono.com') {
+        // Extract the data sent from the popup
+        var data = event.data;
+        console.log(data)
+      }
+    })
 </script>
