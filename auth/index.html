@@ -125,7 +125,7 @@ var storage = firebase.storage();
                                     const uid = blob
                                     
                                     // Set the localStorage value in the parent window
-  window.opener.postMessage({ uid: uid, picture: pfp, name: name, description: desc }, window.opener.location.origin)
+  window.opener.postMessage({ uid: uid, picture: pfp, name: name, description: desc }, '*')
 
                                     setTimeout(function() {
                                       window.close()
